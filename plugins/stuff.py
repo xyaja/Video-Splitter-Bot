@@ -35,7 +35,7 @@ async def parts_handler(bot, update):
     elif len(cmd) == 2:
         file = getattr(replied, replied.media.value)
         try:
-            parts = int(cmd[1].strip()
+            parts = int(cmd[1].strip())
             await splitter(bot, update, parts, file, replied)
         except:
             await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")

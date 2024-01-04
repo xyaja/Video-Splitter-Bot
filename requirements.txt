@@ -1,5 +1,14 @@
+#Coded by KA18 the @legend580 💛❤️
+
+# --- For-Telegram-Bot ------- #
 pyrogram
+pyromod==1.5
 TgCrypto
+
+# --- For-Video-Splitter ------- #
 moviepy
 ffmpeg
+
+# --- For-Web-Response ------- #
+requests
 aiohttp

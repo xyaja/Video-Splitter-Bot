@@ -66,7 +66,7 @@ async def splitter(bot, update, parts, file, replied):
 
     if os.path.isfile(file_path):
         logger.info("no issues")
-        await ms.edit(text="Starting to split")
+        await ms.edit(text=f"Starting to split {parts} parts.....!!")
         loc,d = await split_parts(file_path, parts, file_folder)
         for i in range(parts):
             await ms.delete()

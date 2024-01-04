@@ -20,7 +20,7 @@ async def start_command(client: Client, message: Message):
 async def doc(bot, update):
     file = getattr(update, update.media.value)
     filename = file.file_name
-    file_folder = f'{DOWNLOAD_LOCATION}{file.file_name.split('_')[0]}{random_char(5)}'
+    file_folder = f'{DOWNLOAD_LOCATION}/{file.file_name.split('_')[0]}' + {random_char(5)}
     file_path = f'{file_folder}/{file.file_name.split('.')[0]}.mp4'
     logger.info(file_path)
     output_folder = f'{file_path}/Parts'

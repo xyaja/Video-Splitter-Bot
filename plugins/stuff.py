@@ -94,7 +94,15 @@ async def split_parts(file_path, parts, file_folder):
         logger.info("splitting started")
         start_time = i * duration_per_part
         output_file = os.path.join(output_folder, f"part{i+1}.mp4")
-        cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
+      
+        cmd = ["ffmpeg",
+               "-i", file_path,
+               "-ss", start_time,
+               "-t", duration_per_part,
+               "-c", "copy", output_file
+        ]
+        #cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
+        logger.info(cmd)
         process = await asyncio.create_subprocess_exec(
         *cmd,
         # stdout must a pipe to be accessible as process.stdout

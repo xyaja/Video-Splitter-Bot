@@ -1,8 +1,9 @@
 from moviepy.video.io.VideoFileClip import VideoFileClip
 import os
+import asyncio
 
 # splitting given video into equal parts
-def split_parts(file_path, parts):
+async def split_parts(file_path, parts):
     video = VideoFileClip(file_path)
     video_length = video.duration
     duration_per_part = video_length / parts

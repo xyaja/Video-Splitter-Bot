@@ -99,8 +99,7 @@ async def split_parts(file_path, parts, file_folder):
                "-i", file_path,
                "-ss", start_time,
                "-t", duration_per_part,
-               "-c", "copy", output_file
-        ]
+               "-c", "copy", output_file ]
         #cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
         logger.info(cmd)
         process = await asyncio.create_subprocess_exec(

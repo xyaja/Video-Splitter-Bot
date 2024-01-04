@@ -2,6 +2,7 @@
 TgCrypto
 moviepy
 tqdm
+asyncio
 
 APScheduler==3.6.3
 cachetools==4.2.2

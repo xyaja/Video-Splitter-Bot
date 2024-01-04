@@ -10,6 +10,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 import asyncio
 import subprocess
+from split import split_parts
 
 @Client.on_message(filters.command('start') & filters.private )
 async def start_command(client: Client, message: Message):
@@ -26,7 +27,7 @@ async def doc(bot, update):
     logger.info(f"folder :-{output_folder} ")
     video_length = file.file_size
     logger.info(f"vidlenght :-{video_length} ")
-    #parts = 2
+    parts = 2
     if file.file_size > 2000 * 1024 * 1024:
          return await update.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
 
@@ -44,30 +45,10 @@ async def doc(bot, update):
     duration = 0
     if os.path.isfile(file_path):
         logger.info("no issues")
-        await ms.edit(text="Starting to split")
-        # parts = 4
-        duration_per_part = video_length / parts
-        acodec="copy"
-        vcodec="copy"
-        extra=""
         try:
-            for i in range(parts):
-                logger.info("split start")
-                start_time = i * duration_per_part
-                logger.info(f"start_time :- {start_time}")
-                output_file = os.path.join(output_folder, f"{file.file_name.split('_')[0]}_part_{i+1:02d}.mp4")
-                logger.info(f"output_file dire :-{output_file} ")
-                # split_cmd = [ffmpeg, "-i", file_path, "-vcodec", vcodec,"-acodec", acodec, "-y"] + shlex.split(extra)
-                # split_args += ["-ss", str(start_time), "-t", str(duration_per_part), output_file]
-                # subprocess.check_output(split_cmd + split_args)
-                
-                command_to_exec = ["ffmpeg", "-i", file_path, "-ss", start_time, "-t", duration_per_part, "-c copy", output_file]
-                process = await asyncio.create_subprocess_exec(*command_to_exec, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
-                logger.info("split start2....")
-                stdout, stderr = await process.communicate()
-                logger.info("split start3......")
-                e_response = stderr.decode().strip()
-                t_response = stdout.decode().strip()
+            await ms.edit(text="Starting to split")
+            await split_parts(file_path, parts)
+            await ms.edit(text="Starting successfully completed..!")
         except:
             await ms.edit(text="somthing went wrong")
     else:

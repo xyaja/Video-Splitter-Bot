@@ -19,32 +19,32 @@ async def start_command(client: Client, message: Message):
 async def doc(bot, update):
     file = getattr(update, update.media.value)
     filename = file.file_name
-    file_path = f"downloads/{file.file_name.split('_')[0]}/{file.file_name.split('.')[0]}.mp4"
+    file_folder = f'{DOWNLOAD_LOCATION}{file.file_name.split('_')[0]}{random_char(5)}'
+    file_path = f'{file_folder}/{file.file_name.split('.')[0]}.mp4'
     logger.info(file_path)
-    output_folder = f"downloads/{file.file_name.split('_')[0]}/Parts"
+    output_folder = f'{file_path}/Parts'
     logger.info(f"folder :-{output_folder} ")
     video_length = file.file_size
     logger.info(f"vidlenght :-{video_length} ")
-    parts = 2
+    #parts = 2
     if file.file_size > 2000 * 1024 * 1024:
          return await update.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
 
-    ms =   await update.reply_text(text=f"Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅɪɴɢ....") 
+    ms = await update.reply_text(text=f"Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅɪɴɢ....") 
     
     try:
        logger.info('starting download')
        #path = await bot.download_media(message=update, file_name=file_path, progress=progress_for_pyrogram,progress_args=("Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....", ms, time.time())) 
-       path = await bot.download_media(message=update, file_name=file_path) 
+       await bot.download_media(message=update, file_name=file_path) 
     except Exception as e:
        return await ms.edit(e)
-    logger.info('download complete')       
-    duration = 0
+    logger.info('download complete') 
     await ms.edit(text="DL complete")
-    
-    ffmpeg = "ffmpeg/fffmpeg.exe"
+    #ffmpeg = "ffmpeg/fffmpeg.exe"
+    duration = 0
     if os.path.isfile(file_path):
         logger.info("no issues")
-        await ms.edit(text="starting to split")
+        await ms.edit(text="Starting to split")
         # parts = 4
         duration_per_part = video_length / parts
         acodec="copy"
@@ -73,3 +73,8 @@ async def doc(bot, update):
     else:
         logger.info("issues found, passing to sub process")
         await ms.edit(text="process excuted somthing wrong")
+
+
+
+def random_char(y): #generate random characters for location(path)
+       return ''.join(random.choice(string.ascii_letters) for x in range(y))

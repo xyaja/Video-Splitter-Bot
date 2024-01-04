@@ -2,4 +2,3 @@ pyrogram
 TgCrypto
 moviepy
 ffmpeg
-numpy

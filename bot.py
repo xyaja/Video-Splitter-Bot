@@ -18,7 +18,7 @@ if __name__ == "__main__" :
     if not os.path.isdir(Config.DOWNLOAD_LOCATION):
         os.makedirs(Config.DOWNLOAD_LOCATION)
     plugins = dict(root="plugins")
-    JNbot = Ntbot(
+    JNbot = JNbot(
         "VS Bot",
         bot_token=Config.BOT_TOKEN,
         api_id=Config.API_ID,

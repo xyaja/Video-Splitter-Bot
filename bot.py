@@ -7,9 +7,17 @@ logger = logging.getLogger(__name__)
 
 import os
 from config import Config
+from aiohttp import web
+from plugins import web_server
 
-from pyrogram import Client as JNbot
+import pyromod.listen
+from pyrogram import Client
+from pyrogram.enums import ParseMode
+
+import sys
+from datetime import datetime
 from pyrogram import filters
+
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
@@ -35,7 +43,7 @@ class Bot(Client):
         app = web.AppRunner(await web_server())
         await app.setup()
         bind_address = "0.0.0.0"
-        await web.TCPSite(app, bind_address, PORT).start()
+        await web.TCPSite(app, bind_address, Config.PORT).start()
 
     async def stop(self, *args):
         await super().stop()

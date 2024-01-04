@@ -96,7 +96,17 @@ async def split_parts(file_path, parts, file_folder):
         start_time = i * duration_per_part
         output_file = os.path.join(output_folder, f"part{i+1}.mp4")
         cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
-        subprocess.check_output(cmd, shell=True)
+        process = await asyncio.create_subprocess_exec(
+        *cmd,
+        # stdout must a pipe to be accessible as process.stdout
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+        )
+        stdout, stderr = await process.communicate()
+        e_response = stderr.decode().strip()
+        logger.info(e_response)
+        t_response = stdout.decode().strip()
+        #subprocess.check_output(cmd, shell=True)
     return output_folder,d
 
 PROGRESS_BAR = """<b>\n

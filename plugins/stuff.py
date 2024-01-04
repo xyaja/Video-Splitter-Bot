@@ -34,11 +34,11 @@ async def parts_handler(bot, update):
         return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
     elif len(cmd) == 2:
         file = getattr(replied, replied.media.value)
-        try:
-            parts = int(cmd[1].strip())
-            await splitter(bot, update, parts, file, replied)
-        except:
-            await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
+        #try:
+        parts = int(cmd[1].strip())
+        await splitter(bot, update, parts, file, replied)
+        #except:
+            #await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
 
 async def splitter(bot, update, parts, file, replied):
     filename = file.file_name

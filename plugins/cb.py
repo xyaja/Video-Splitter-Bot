@@ -1,3 +1,5 @@
+#Coded by KA18 the @legend580 💛❤️
+
 import os, shutil
 from pyrogram import Client, types
 from plugins.stuff import parts_handler

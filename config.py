@@ -42,5 +42,3 @@ class Config(object):
     
     #Port
     PORT = os.environ.get("PORT", "8080")
-
-    PRO_USERS.append(OWNER_ID)

@@ -42,7 +42,7 @@ async def button(bot, update):
             #await bot.send_photo(update.message.chat.id, thumbnail, "Custom Thumbnail",
                                #reply_markup=types.InlineKeyboardMarkup([[
                                    #types.InlineKeyboardButton("Delete Thumbnail",
-                                                              callback_data="deleteThumbnail")
+                                                              #callback_data="deleteThumbnail")
                                #]]))
     #elif update.data == "deleteThumbnail":
         #await db.set_thumbnail(update.from_user.id, None)

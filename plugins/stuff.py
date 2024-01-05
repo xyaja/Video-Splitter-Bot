@@ -20,7 +20,7 @@ import shutil
 
 @Client.on_message(filters.command('start') & filters.private )
 async def start_command(client: Client, message: Message):
-    await message.reply_text(text = Config.START_TEXT.format(update.from_user.mention),
+    await message.reply_text(text = Config.START_TEXT.format(message.from_user.mention),
         disable_web_page_preview=True, 
         reply_markup=Config.START_BUTTONS, quote=True)
 

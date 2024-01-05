@@ -43,7 +43,8 @@ async def add_auth(bot, update):
         try:
             auth_id = int(cmd[1].strip())
             Config.AUTH_USERS.append(auth_id)
-            await bot.send_message(chat_id = auth_id, text = "Now Your An Authorised User🎉.")
+            await bot.send_message(chat_id = auth_id, text = "<b>Now Your An Authorised User🎉.</b>")
+            await update.reply(text = f"<b>New User Added🎉.\n User ID - {auth_id}</b>")
         except:
             await update.reply(text = "Invalid User ID, please chech again and resend.")
   

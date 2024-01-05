@@ -1,6 +1,6 @@
 #Coded by KA18 the @legend580 💛❤️
 
-from plugins.config import Config
+from config import Config
 from .database import db
 from pyrogram import Client
 from pyrogram.types import Message

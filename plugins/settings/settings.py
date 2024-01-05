@@ -1,4 +1,4 @@
-# Developede by EliteCraft_Studios
+#Coded by KA18 the @legend580 💛❤️
 
 import asyncio
 from pyrogram import types, errors

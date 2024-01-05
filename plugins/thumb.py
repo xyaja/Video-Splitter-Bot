@@ -13,8 +13,6 @@ from PIL import Image
 import time
 from pyrogram import Client
 
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import filters
 import string

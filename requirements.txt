@@ -4,6 +4,7 @@
 pyrogram
 pyromod==1.5
 TgCrypto
+loggers
 
 # --- For-Video-Splitter ------- #
 moviepy
@@ -12,3 +13,8 @@ ffmpeg
 # --- For-Web-Response ------- #
 requests
 aiohttp
+
+# --- For-Database ------- #
+pymongo
+dnspython
+motor

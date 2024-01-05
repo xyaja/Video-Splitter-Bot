@@ -70,11 +70,11 @@ async def parts_handler(bot, update):
         return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
     elif len(cmd) == 2:
         file = getattr(replied, replied.media.value)
-        try:
-            parts = int(cmd[1].strip())
-            await splitter(bot, update, parts, file, replied)
-        except:
-            await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
+        # try:
+        parts = int(cmd[1].strip())
+        await splitter(bot, update, parts, file, replied)
+        # except:
+        #     await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
 
 async def splitter(bot, update, parts, file, replied):
     filename = file.file_name
@@ -84,10 +84,8 @@ async def splitter(bot, update, parts, file, replied):
     output_folder = f'{file_path}/Parts'
     video_length = file.file_size
     if file.file_size > 2000 * 1024 * 1024:
-        await update.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
-
-    ms = await update.reply_text(text=f"Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ....") 
-    
+        return await update.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
+    ms = await update.reply_text(text=f"Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ....")
     try:
     	await bot.download_media(message = replied , file_name=file_path, progress=progress_for_pyrogram,progress_args=("Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....", ms, time.time()))
     except Exception as e:

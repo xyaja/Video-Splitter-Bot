@@ -18,23 +18,23 @@ import random, string, sys
 import os
 import shutil
 
-@Client.on_message(filters.command('start') & filters.private )
+@Client.on_message(filters.command('start') & filters.private)
 async def start_command(client: Client, message: Message):
     await message.reply_text(text = Config.START_TEXT.format(message.from_user.mention),
         disable_web_page_preview=True, 
         reply_markup=Config.START_BUTTONS, quote=True)
 
-@Client.on_message(filters.command('help') & filters.private )
+@Client.on_message(filters.command('help') & filters.private)
 async def help_command(client: Client, message: Message):
     await message.reply_text(text = Config.HELP_TEXT,
         disable_web_page_preview=True, reply_markup=Config.HELP_BUTTONS, quote=True)
 
-@Client.on_message(filters.command('about') & filters.private )
+@Client.on_message(filters.command('about') & filters.private)
 async def about_command(client: Client, message: Message):
     await message.reply_text(text = Config.ABOUT_TEXT,
         disable_web_page_preview=True, reply_markup=Config.ABOUT_BUTTONS, quote=True)
 
-@Client.on_message(filters.command('addauth') & filters.private(Config.OWNER_ID))
+@Client.on_message(filters.command('addauth') & filters.private & filters.user(Config.OWNER_ID))
 async def add_auth(bot, update):
     cmd = update.command
     if len(cmd) == 1:

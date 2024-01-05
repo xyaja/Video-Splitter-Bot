@@ -1,7 +1,7 @@
 #Code by KA18 the @legend580 💛❤️
 
 import os
-
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import logging
 
 logging.basicConfig(

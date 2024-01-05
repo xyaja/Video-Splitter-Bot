@@ -77,7 +77,11 @@ async def Gthumb01(bot, update):
         img.resize((100, 100))
         img.save(thumbnail, "JPEG")
     else:
-        thumbnail = None
+        thumbnail = await take_screen_shot(download_directory, os.path.dirname(download_directory), random.randint(0, duration - 1))
+        Image.open(thumbnail).convert("RGB").save(thumbnail)
+        img = Image.open(thumbnail)
+        img.resize((100, 100))
+        img.save(thumbnail, "JPEG")
 
     return thumbnail
 

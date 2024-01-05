@@ -21,7 +21,18 @@ import shutil
 @Client.on_message(filters.command('start') & filters.private )
 async def start_command(client: Client, message: Message):
     await message.reply_text(text = Config.START_TEXT.format(update.from_user.mention),
-        disable_web_page_preview=True, quote=True)
+        disable_web_page_preview=True, 
+        reply_markup=Config.START_BUTTONS, quote=True)
+
+@Client.on_message(filters.command('help') & filters.private )
+async def help_command(client: Client, message: Message):
+    await message.reply_text(text = Config.HELP_TEXT,
+        disable_web_page_preview=True, reply_markup=Config.HELP_BUTTONS, quote=True)
+
+@Client.on_message(filters.command('about') & filters.private )
+async def about_command(client: Client, message: Message):
+    await message.reply_text(text = Config.ABOUT_TEXT,
+        disable_web_page_preview=True, reply_markup=Config.ABOUT__BUTTONS, quote=True)
         
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):

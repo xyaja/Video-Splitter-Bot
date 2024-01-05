@@ -1,5 +1,4 @@
-# Copyright IT'S LUFFY | @God_LUffy_ati
-
+#Coded by KA18 the @legend580 💛❤️
 
 import logging
 logging.basicConfig(level=logging.DEBUG,

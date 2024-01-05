@@ -122,3 +122,8 @@ class Config(object):
         InlineKeyboardButton('🔒 Close', callback_data='close')
         ]]
     )
+    BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('🔒 Close', callback_data='close')
+        ]]
+    )

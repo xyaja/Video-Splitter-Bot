@@ -70,11 +70,11 @@ async def parts_handler(bot, update):
         return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
     elif len(cmd) == 2:
         file = getattr(replied, replied.media.value)
-        # try:
-        parts = int(cmd[1].strip())
-        await splitter(bot, update, parts, file, replied)
-        # except:
-        #     await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
+        try:
+            parts = int(cmd[1].strip())
+            await splitter(bot, update, parts, file, replied)
+        except:
+            await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
 
 async def splitter(bot, update, parts, file, replied):
     filename = file.file_name
@@ -108,6 +108,10 @@ async def splitter(bot, update, parts, file, replied):
 
         #deleting folder aftre the splitted parts upload
         shutil.rmtree(file_folder)
+        thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+        #deleting thumbnail aftre the splitted parts upload
+        if os.path.exists(thumb_image_path):
+            os.remove(thumb_image_path)
 
 #generate random characters for location(path)
 def random_char(y):

@@ -97,15 +97,15 @@ async def splitter(bot, update, parts, file, replied):
     if os.path.isfile(file_path):
         await ms.edit(text=f"Starting to split {parts} parts.....!!")
         loc,d = await split_parts(file_path, parts, file_folder)
+        width = 640
+        height = 360
         for i in range(parts):
             await ms.delete()
             mg = await bot.send_message(chat_id = update.chat.id, text=f"Uploading Part{i+1} video..!")
-            dpath = loc + "/part" + str(i+1) + ".mp4"
+            download_directory = loc + "/part" + str(i+1) + ".mp4"
             description = f'<b>{fn}_Part{i+1}.mp4</b>'
-            width = 640
-            height = 360
-            await upload(bot, update, dpath, description, width, height, d):
-            #await bot.send_video(chat_id = update.chat.id, video = loc + "/part" + str(i+1) + ".mp4", supports_streaming = True, duration=d, width = 640, height = 360, caption = f'<b>{fn}_Part{i+1}.mp4</b>')
+            await upload(bot, update, download_directory, description, width, height, d)
+            #await bot.send_video(chat_id = update.chat.id, video = download_directory, supports_streaming = True, duration= d, width = width, height = height, caption = description)
             await mg.delete()
 
         #deleting folder aftre the splitted parts upload

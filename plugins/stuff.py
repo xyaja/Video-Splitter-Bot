@@ -41,11 +41,11 @@ async def add_auth(bot, update):
         return await update.reply(text = "Invalid Syntax send the command properly.\nExample: <code>/addauth 1061576483</code>")
     elif len(cmd) == 2:
         try:
-          auth_id = int(cmd[1].strip())
-          Config.AUTH_USERS.append(auth_id)
-          await update.send_message(chat_id = auth_id, text = "Now Your An Authorised User🎉.")
+            auth_id = int(cmd[1].strip())
+            Config.AUTH_USERS.append(auth_id)
+            await bot.send_message(chat_id = auth_id, text = "Now Your An Authorised User🎉.")
         except:
-          await update.reply(text = "Invalid User ID, please chech again and resend.")
+            await update.reply(text = "Invalid User ID, please chech again and resend.")
   
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):
@@ -56,45 +56,37 @@ async def parts_handler(bot, update):
     user_id = update.from_user.id
     cmd = update.command
     replied = update.reply_to_message
-    logger.info(f"Length :- {len(cmd)}")
     if not replied:
         return await update.reply('Reply to any video/file to split.')
     if len(cmd) == 1:
         return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
     elif len(cmd) == 2:
         file = getattr(replied, replied.media.value)
-        #try:
-        parts = int(cmd[1].strip())
-        await splitter(bot, update, parts, file, replied)
-        #except:
-            #await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
+        try:
+            parts = int(cmd[1].strip())
+            await splitter(bot, update, parts, file, replied)
+        except:
+            await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
 
 async def splitter(bot, update, parts, file, replied):
     filename = file.file_name
     fn = str(file.file_name.split("_")[0])
     file_folder = f'{Config.DOWNLOAD_LOCATION}/{fn}{str(random_char(5))}'
     file_path = f'{file_folder}/{file.file_name.split(".")[0]}.mp4'
-    logger.info(file_path)
     output_folder = f'{file_path}/Parts'
-    logger.info(f"folder :-{output_folder} ")
     video_length = file.file_size
-    logger.info(f"vidlenght :-{video_length} ")
-    #parts = 5
     if file.file_size > 2000 * 1024 * 1024:
         await update.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
 
     ms = await update.reply_text(text=f"Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅɪɴɢ....") 
     
     try:
-    	logger.info('starting download')
     	await bot.download_media(message = replied , file_name=file_path, progress=progress_for_pyrogram,progress_args=("Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....", ms, time.time()))
     except Exception as e:
     	return await ms.edit(e)
-    logger.info('download complete') 
     await ms.edit(text="DL complete")
 
     if os.path.isfile(file_path):
-        logger.info("no issues")
         await ms.edit(text=f"Starting to split {parts} parts.....!!")
         loc,d = await split_parts(file_path, parts, file_folder)
         for i in range(parts):
@@ -103,8 +95,8 @@ async def splitter(bot, update, parts, file, replied):
             await bot.send_video(chat_id = update.chat.id, video = loc + "/part" + str(i+1) + ".mp4", supports_streaming = True, duration=d, width = 640, height = 360, caption = f'<b>{fn}_Part{i+1}.mp4</b>')
             await mg.delete()
 
+        #deleting folder aftre the splitted parts upload
         shutil.rmtree(file_folder)
-        logger.info("Floder deleted successfully...!")
 
 #generate random characters for location(path)
 def random_char(y):
@@ -114,18 +106,15 @@ def random_char(y):
 async def split_parts(file_path, parts, file_folder):
     video = VideoFileClip(file_path)
     video_length = video.duration
-    logger.info(f"video_length :- {video_length}")
     duration_per_part = video_length / parts
     d = int(duration_per_part)
     output_folder = os.makedirs(f'{file_folder}/Parts')
     output_folder = f'{file_folder}/Parts'
     for i in range(parts):
-        logger.info("splitting started")
         start_time = i * duration_per_part
         output_file = os.path.join(output_folder, f"part{i+1}.mp4")
         cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
         subprocess.check_output(cmd, shell=True)
-        
     return output_folder,d
 
 def TimeFormatter(milliseconds: int) -> str:

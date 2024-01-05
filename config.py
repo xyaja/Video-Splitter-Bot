@@ -52,6 +52,42 @@ class Config(object):
     ┣⪼ 🚀 Sᴩᴇᴇᴅ: {3}/s
     ┣⪼ ⏰️ Eᴛᴀ: {4}
     ╰━━━━━━━━━━━━━━━➣ </b>"""
+
+    HELP_TEXT = """
+     𒊹︎︎︎ How To Split File Or Video
+
+     ➪ Send Your File Or Video For Download.
+     ➪ Then Reply Command /sp With Split Size To Your File Or Video.
+     ➪ Example: Reply <code>/sp 5</code> To Any File Or Video \nHere The Given Video Is Splitted Into 5 Parts And Upload.
+
+     𒊹︎︎︎ How to set thumbnail
+
+     ➪ Send Your Thumbnail Photo To Add Your Permanent Thumbnail Photo.
+
+     𒊹︎︎︎ How To Deleting Thumbnail
+
+     ➪ Send /delthumb To Delete Your Thumbnail.
+
+     𒊹︎︎︎ How To Show Thumbnail 
+
+     ➪ Send /showthumb To View Custom Thumbnail 
+ 
+     """
+    
+    ABOUT_TEXT = """
+     **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/{username})
+
+     **❤️ Version** : VSBV01.01 🔥
+
+     **🤖 Source** : Not Available ❌
+
+     **🧿 Language** : [Python 3](https://www.python.org/)
+
+     **📢 Framework** : [Pyrogram](https://docs.pyrogram.org/)
+
+     **👨‍💻 Developer** : [ಕನ್ನಡಿಗ 💛❤️](https://t.me/legend580)
+
+     """
     
     START_BUTTONS = InlineKeyboardMarkup(
         [[
@@ -77,6 +113,8 @@ class Config(object):
         InlineKeyboardButton('🔒 Close', callback_data='close')
         ]]
     )
+
+    
 
     
     

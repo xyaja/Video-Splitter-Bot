@@ -37,6 +37,10 @@ async def about_command(client: Client, message: Message):
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):
     user_id = update.from_user.id
+    if not user_id in Config.AUTH_USERS:
+        return await update.reply_text(text = Config.NOT_AUTH.format(update.from_user.mention),
+        disable_web_page_preview=True, quote=True)
+    user_id = update.from_user.id
     cmd = update.command
     replied = update.reply_to_message
     logger.info(f"Length :- {len(cmd)}")

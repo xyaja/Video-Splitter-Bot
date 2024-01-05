@@ -17,8 +17,6 @@ from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import filters
-import psutil
-import shutil
 import string
 import asyncio
 from asyncio import TimeoutError

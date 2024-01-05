@@ -100,6 +100,8 @@ class Config(object):
     
     START_BUTTONS = InlineKeyboardMarkup(
         [[
+        InlineKeyboardButton('⚙️ Settings ⚙️', callback_data='OpenSettings')
+        ],[
         InlineKeyboardButton('Help 🫂', callback_data='help'),
         InlineKeyboardButton('🧑‍🎓 About🧑‍🎓', callback_data='about')
         ],[

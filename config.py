@@ -20,8 +20,12 @@ class Config(object):
 
     API_HASH = os.environ.get("API_HASH", "a15a5954a1db54952eebd08ea6c68b71")
 
+    OWNER_ID = int(os.environ.get("OWNER_ID", "1061576483"))
+    
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "1061576483").split())
 
+    AUTH_USERS.append(OWNER_ID)
+    
     BANNED_USERS = set(int(x) for x in os.environ.get("BANNED_USERS", "").split())
 
     DOWNLOAD_LOCATION = "./DOWNLOADS"
@@ -33,8 +37,6 @@ class Config(object):
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001512853438"))
 
     LOGGER = logging
-
-    OWNER_ID = int(os.environ.get("OWNER_ID", "1061576483"))
     
     #Port
     PORT = os.environ.get("PORT", "8080")

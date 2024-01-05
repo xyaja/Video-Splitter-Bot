@@ -53,3 +53,30 @@ class Config(object):
     ┣⪼ ⏰️ Eᴛᴀ: {4}
     ╰━━━━━━━━━━━━━━━➣ </b>"""
     
+    START_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('Help 🫂', callback_data='help'),
+        InlineKeyboardButton('🧑‍🎓 About🧑‍🎓', callback_data='about')
+        ],[
+        InlineKeyboardButton('🔒 Close', callback_data='close')
+        ]]
+    )
+    HELP_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('🔙 Back', callback_data='home'),
+        InlineKeyboardButton('🧑‍🎓 About 🧑‍🎓', callback_data='about')
+        ],[
+        InlineKeyboardButton('🔒 Close', callback_data='close')
+        ]]
+    )
+    ABOUT_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('🔙 Back', callback_data='home'),
+        InlineKeyboardButton('Help 🫂', callback_data='help')
+        ],[
+        InlineKeyboardButton('🔒 Close', callback_data='close')
+        ]]
+    )
+
+    
+    

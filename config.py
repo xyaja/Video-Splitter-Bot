@@ -63,15 +63,15 @@ class Config(object):
      
      ➪ Example: Reply <code>/sp 5</code> To Any File Or Video. Here The Given Video Is Splitted Into 5 Parts And Upload.
 
-    <b>𒊹︎︎︎ How to set thumbnail</b>
+<b>𒊹︎︎︎ How to set thumbnail</b>
     
      ➪ Send Your Thumbnail Photo To Add Your Permanent Thumbnail Photo.
 
-    <b>𒊹︎︎︎ How To Deleting Thumbnail</b>
+<b>𒊹︎︎︎ How To Deleting Thumbnail</b>
     
      ➪ Send /delthumb To Delete Your Thumbnail.
 
-    <b>𒊹︎︎︎ How To Show Thumbnail</b>
+<b>𒊹︎︎︎ How To Show Thumbnail</b>
     
      ➪ Send /showthumb To View Custom Thumbnail 
  
@@ -80,15 +80,15 @@ class Config(object):
     ABOUT_TEXT = """
     **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/{username})
     
-    **❤️ Version** : VSBV01.01 🔥
+**❤️ Version** : VSBV01.01 🔥
 
-    **🤖 Source** : Not Available ❌
+**🤖 Source** : Not Available ❌
 
-    **🧿 Language** : [Python 3](https://www.python.org/)
+**🧿 Language** : [Python 3](https://www.python.org/)
 
-    **📢 Framework** : [Pyrogram](https://docs.pyrogram.org/)
+**📢 Framework** : [Pyrogram](https://docs.pyrogram.org/)
 
-    **👨‍💻 Developer** : [ಕನ್ನಡಿಗ 💛❤️](https://t.me/legend580) """
+**👨‍💻 Developer** : [ಕನ್ನಡಿಗ 💛❤️](https://t.me/legend580) """
     
     START_BUTTONS = InlineKeyboardMarkup(
         [[
@@ -114,8 +114,3 @@ class Config(object):
         InlineKeyboardButton('🔒 Close', callback_data='close')
         ]]
     )
-
-    
-
-    
-    

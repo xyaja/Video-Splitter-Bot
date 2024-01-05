@@ -24,6 +24,8 @@ class Config(object):
     
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "1061576483").split())
 
+    AUTH_USERS = list(AUTH_USERS)
+    
     AUTH_USERS.append(OWNER_ID)
     
     BANNED_USERS = set(int(x) for x in os.environ.get("BANNED_USERS", "").split())

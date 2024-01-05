@@ -33,8 +33,6 @@ class Config(object):
 
     UPDATES_CHANNEL = os.environ.get("UPDATE_CHANNEL", "-1001512853438")
 
-    DEF_THUMB_NAIL_VID_S = os.environ.get("DEF_THUMB_NAIL_VID_S", "https://placehold.it/90x90")
-
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001512853438"))
 
     LOGGER = logging
@@ -57,23 +55,31 @@ class Config(object):
     ╰━━━━━━━━━━━━━━━➣ </b>"""
 
     HELP_TEXT = """
-     <b>𒊹︎︎︎ How To Split File Or Video</b>
+    <b>𒊹︎︎︎ How To Split File Or Video</b>
+    
      ➪ Send Your File Or Video For Download.
+     
      ➪ Then Reply Command /sp With Split Size To Your File Or Video.
-     ➪ Example: Reply <code>/sp 5</code> To Any File Or Video \nHere The Given Video Is Splitted Into 5 Parts And Upload.
+     
+     ➪ Example: Reply <code>/sp 5</code> To Any File Or Video. Here The Given Video Is Splitted Into 5 Parts And Upload.
 
-     <b>𒊹︎︎︎ How to set thumbnail</b>
+    <b>𒊹︎︎︎ How to set thumbnail</b>
+    
      ➪ Send Your Thumbnail Photo To Add Your Permanent Thumbnail Photo.
 
-     <b>𒊹︎︎︎ How To Deleting Thumbnail</b>
+    <b>𒊹︎︎︎ How To Deleting Thumbnail</b>
+    
      ➪ Send /delthumb To Delete Your Thumbnail.
 
-     <b>𒊹︎︎︎ How To Show Thumbnail</b>
+    <b>𒊹︎︎︎ How To Show Thumbnail</b>
+    
      ➪ Send /showthumb To View Custom Thumbnail 
  
      """
     
-    ABOUT_TEXT = """ **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/{username})
+    ABOUT_TEXT = """
+    **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/{username})
+    
     **❤️ Version** : VSBV01.01 🔥
 
     **🤖 Source** : Not Available ❌

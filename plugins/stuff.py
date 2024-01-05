@@ -108,10 +108,6 @@ async def splitter(bot, update, parts, file, replied):
 
         #deleting folder aftre the splitted parts upload
         shutil.rmtree(file_folder)
-        thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-        #deleting thumbnail aftre the splitted parts upload
-        if os.path.exists(thumb_image_path):
-            os.remove(thumb_image_path)
 
 #generate random characters for location(path)
 def random_char(y):

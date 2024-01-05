@@ -78,7 +78,7 @@ class Config(object):
      """
     
     ABOUT_TEXT = """
-    **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/{username})
+    **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/media_splitter_bot)
     
 **❤️ Version** : VSBV01.01 🔥
 

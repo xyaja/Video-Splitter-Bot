@@ -17,6 +17,7 @@ from config import Config
 import random, string, sys
 import os
 import shutil
+from plugins.upload import upload
 from plugins.database.add import add_user_to_database
 
 @Client.on_message(filters.command('start') & filters.private)
@@ -99,7 +100,8 @@ async def splitter(bot, update, parts, file, replied):
         for i in range(parts):
             await ms.delete()
             mg = await bot.send_message(chat_id = update.chat.id, text=f"Uploading Part{i+1} video..!")
-            await bot.send_video(chat_id = update.chat.id, video = loc + "/part" + str(i+1) + ".mp4", supports_streaming = True, duration=d, width = 640, height = 360, caption = f'<b>{fn}_Part{i+1}.mp4</b>')
+            await upload(bot, update, loc + "/part" + str(i+1) + ".mp4", description = f'<b>{fn}_Part{i+1}.mp4</b>', width = 640, height = 360, d):
+            #await bot.send_video(chat_id = update.chat.id, video = loc + "/part" + str(i+1) + ".mp4", supports_streaming = True, duration=d, width = 640, height = 360, caption = f'<b>{fn}_Part{i+1}.mp4</b>')
             await mg.delete()
 
         #deleting folder aftre the splitted parts upload

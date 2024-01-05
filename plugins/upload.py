@@ -20,7 +20,7 @@ from PIL import Image
 
 async def upload(bot, update, download_directory, description, width, height, duration):
     if (await db.get_upload_as_doc(update.from_user.id)) is False:
-        thumbnail = await Gthumb01(bot, update, duration, download_directory)
+        thumbnail = await Gthumb01(bot, update)
         await bot.send_document(
             chat_id=update.chat.id,
             document=download_directory,

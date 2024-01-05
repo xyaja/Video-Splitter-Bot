@@ -30,10 +30,6 @@ class Config(object):
 
     DEF_THUMB_NAIL_VID_S = os.environ.get("DEF_THUMB_NAIL_VID_S", "https://placehold.it/90x90")
 
-    HTTP_PROXY = os.environ.get("HTTP_PROXY", "")
-
-    SESSION_NAME = os.environ.get("SESSION_NAME", "TG_FILES")
-
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001512853438"))
 
     LOGGER = logging
@@ -42,3 +38,19 @@ class Config(object):
     
     #Port
     PORT = os.environ.get("PORT", "8080")
+
+    START_TEXT = """<b>🤗 Hello {}
+
+    ɪ ᴀᴍ ᴀ ᴛᴇʟᴇɢʀᴀᴍ ᴜʀʟ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ.
+    Sᴇɴᴅ ᴍᴇ ᴀ ᴅɪʀᴇᴄᴛ ʟɪɴᴋ ᴀɴᴅ I ᴡɪʟʟ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴍ ᴀs ᴀ ғɪʟᴇ/ᴠɪᴅᴇᴏ.
+    Usᴇ Hᴇʟᴘ Bᴜᴛᴛᴏɴ Tᴏ Kɴᴏᴡ Hᴏᴡ Tᴏ Usᴇ Mᴇ</b>"""
+
+
+    PROGRESS_BAR = """<b>\n
+    ╭━━━━❰ᴘʀᴏɢʀᴇss ʙᴀʀ❱━➣
+    ┣⪼ 🗃️ Sɪᴢᴇ: {1} | {2}
+    ┣⪼ ⏳️ Dᴏɴᴇ : {0}%
+    ┣⪼ 🚀 Sᴩᴇᴇᴅ: {3}/s
+    ┣⪼ ⏰️ Eᴛᴀ: {4}
+    ╰━━━━━━━━━━━━━━━➣ </b>"""
+    

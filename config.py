@@ -44,13 +44,10 @@ class Config(object):
     PORT = os.environ.get("PORT", "8080")
 
     START_TEXT = """<b>🤗 Hello {}
-    ɪ ᴀᴍ ᴀ ᴛᴇʟᴇɢʀᴀᴍ ᴠɪᴅᴇᴏ ꜱᴘʟɪᴛᴛᴇʀ ʙᴏᴛ. 
-    ꜱᴇɴᴅ ᴍᴇ ᴀɴʏ ᴠɪᴅᴇᴏ/ꜰɪʟᴇ ᴛᴏ ꜱᴘʟɪᴛ ɪɴᴛᴏ ᴇQᴜᴀʟ ᴘᴀʀᴛꜱ. 
-    ᴜꜱᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜꜱᴇ ᴍᴇ.</b>"""
+    ɪ ᴀᴍ ᴀ ᴛᴇʟᴇɢʀᴀᴍ ᴠɪᴅᴇᴏ ꜱᴘʟɪᴛᴛᴇʀ ʙᴏᴛ. ꜱᴇɴᴅ ᴍᴇ ᴀɴʏ ᴠɪᴅᴇᴏ/ꜰɪʟᴇ ᴛᴏ ꜱᴘʟɪᴛ ɪɴᴛᴏ ᴇQᴜᴀʟ ᴘᴀʀᴛꜱ. ᴜꜱᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜꜱᴇ ᴍᴇ.</b>"""
     
     NOT_AUTH = """<b>🤗 Hello {}
-    ʏᴏᴜʀ ɴᴏᴛ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ.
-    ʏᴏᴜ ɴᴇᴇᴅ ʙᴜʏ ᴀ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ ꜰʀᴏᴍ [ಕನ್ನಡಿಗ 💛❤️](https://t.me/legend580) ᴛᴏ ʙᴇᴄᴏᴍᴇ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ.</b>"""
+    ʏᴏᴜʀ ɴᴏᴛ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ. ʏᴏᴜ ɴᴇᴇᴅ ʙᴜʏ ᴀ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ ꜰʀᴏᴍ [ಕನ್ನಡಿಗ 💛❤️](https://t.me/legend580) ᴛᴏ ʙᴇᴄᴏᴍᴇ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ.</b>"""
 
     PROGRESS_BAR = """<b>\n
     ╭━━━━❰ᴘʀᴏɢʀᴇss ʙᴀʀ❱━➣
@@ -61,40 +58,32 @@ class Config(object):
     ╰━━━━━━━━━━━━━━━➣ </b>"""
 
     HELP_TEXT = """
-     𒊹︎︎︎ How To Split File Or Video
-
+     <b>𒊹︎︎︎ How To Split File Or Video</b>
      ➪ Send Your File Or Video For Download.
      ➪ Then Reply Command /sp With Split Size To Your File Or Video.
      ➪ Example: Reply <code>/sp 5</code> To Any File Or Video \nHere The Given Video Is Splitted Into 5 Parts And Upload.
 
-     𒊹︎︎︎ How to set thumbnail
-
+     <b>𒊹︎︎︎ How to set thumbnail</b>
      ➪ Send Your Thumbnail Photo To Add Your Permanent Thumbnail Photo.
 
-     𒊹︎︎︎ How To Deleting Thumbnail
-
+     <b>𒊹︎︎︎ How To Deleting Thumbnail</b>
      ➪ Send /delthumb To Delete Your Thumbnail.
 
-     𒊹︎︎︎ How To Show Thumbnail 
-
+     <b>𒊹︎︎︎ How To Show Thumbnail</b>
      ➪ Send /showthumb To View Custom Thumbnail 
  
      """
     
-    ABOUT_TEXT = """
-     **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/{username})
+    ABOUT_TEXT = """ **📛 My Name** : [𝐕𝐢𝐝𝐞𝐨 𝐒𝐩𝐥𝐢𝐭𝐭𝐞𝐫🚀](http://t.me/{username})
+    **❤️ Version** : VSBV01.01 🔥
 
-     **❤️ Version** : VSBV01.01 🔥
+    **🤖 Source** : Not Available ❌
 
-     **🤖 Source** : Not Available ❌
+    **🧿 Language** : [Python 3](https://www.python.org/)
 
-     **🧿 Language** : [Python 3](https://www.python.org/)
+    **📢 Framework** : [Pyrogram](https://docs.pyrogram.org/)
 
-     **📢 Framework** : [Pyrogram](https://docs.pyrogram.org/)
-
-     **👨‍💻 Developer** : [ಕನ್ನಡಿಗ 💛❤️](https://t.me/legend580)
-
-     """
+    **👨‍💻 Developer** : [ಕನ್ನಡಿಗ 💛❤️](https://t.me/legend580) """
     
     START_BUTTONS = InlineKeyboardMarkup(
         [[

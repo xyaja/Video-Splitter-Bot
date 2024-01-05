@@ -32,7 +32,7 @@ async def help_command(client: Client, message: Message):
 @Client.on_message(filters.command('about') & filters.private )
 async def about_command(client: Client, message: Message):
     await message.reply_text(text = Config.ABOUT_TEXT,
-        disable_web_page_preview=True, reply_markup=Config.ABOUT__BUTTONS, quote=True)
+        disable_web_page_preview=True, reply_markup=Config.ABOUT_BUTTONS, quote=True)
         
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):

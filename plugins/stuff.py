@@ -33,7 +33,20 @@ async def help_command(client: Client, message: Message):
 async def about_command(client: Client, message: Message):
     await message.reply_text(text = Config.ABOUT_TEXT,
         disable_web_page_preview=True, reply_markup=Config.ABOUT_BUTTONS, quote=True)
-        
+
+@Client.on_message(filters.command('addauth') & filters.private(Config.OWNER_ID))
+async def add_auth(bot, update):
+    cmd = update.command
+    if len(cmd) == 1:
+        return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
+    elif len(cmd) == 2:
+        try:
+          auth_id = int(cmd[1].strip())
+          Config.AUTH_USERS.append(auth_id)
+          await update.send_message(chat_id = auth_id, text = "Now Your An Authorised User🎉.")
+        except:
+          await update.reply(text = "Invalid User ID, please chech again and resend.")
+  
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):
     user_id = update.from_user.id

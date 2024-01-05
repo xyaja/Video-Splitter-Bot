@@ -38,7 +38,7 @@ async def about_command(client: Client, message: Message):
 async def add_auth(bot, update):
     cmd = update.command
     if len(cmd) == 1:
-        return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
+        return await update.reply(text = "Invalid Syntax send the command properly.\nExample: <code>/addauth 1061576483</code>")
     elif len(cmd) == 2:
         try:
           auth_id = int(cmd[1].strip())

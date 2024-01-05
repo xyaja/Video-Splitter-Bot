@@ -76,7 +76,7 @@ async def Gthumb01(bot, update, duration, download_directory):
         img.resize((100, 100))
         img.save(thumbnail, "JPEG")
     else:
-        thumbnail = await take_screen_shot(download_directory, os.path.dirname(download_directory), random.randint(0, duration - 1))
+        thumbnail = await take_screen_shot(download_directory, os.path.dirname(Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)), random.randint(0, duration - 1))
         Image.open(thumbnail).convert("RGB").save(thumbnail)
         img = Image.open(thumbnail)
         img.resize((100, 100))
@@ -90,7 +90,7 @@ async def Gthumb02(bot, update, duration, download_directory):
     if db_thumbnail is not None:
         thumbnail = await bot.download_media(message=db_thumbnail, file_name=thumb_image_path)
     else:
-        thumbnail = await take_screen_shot(download_directory, os.path.dirname(download_directory), random.randint(0, duration - 1))
+        thumbnail = await take_screen_shot(download_directory, os.path.dirname(Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)), random.randint(0, duration - 1))
 
     return thumbnail
 

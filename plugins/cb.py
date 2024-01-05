@@ -35,7 +35,7 @@ async def button(bot, update):
         )
 
     elif update.data == "OpenSettings":
-        await update.answer()
+        # await update.answer()
         await OpenSettings(update.message)
     elif update.data == "showThumbnail":
         thumbnail = await db.get_thumbnail(update.from_user.id)

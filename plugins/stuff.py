@@ -20,7 +20,8 @@ import shutil
 
 @Client.on_message(filters.command('start') & filters.private )
 async def start_command(client: Client, message: Message):
-    await message.reply_text("hello buddy ......",quote=True)
+    await message.reply_text(text = Config.START_TEXT.format(update.from_user.mention),
+        disable_web_page_preview=True, quote=True)
         
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):
@@ -94,29 +95,10 @@ async def split_parts(file_path, parts, file_folder):
         logger.info("splitting started")
         start_time = i * duration_per_part
         output_file = os.path.join(output_folder, f"part{i+1}.mp4")
-
-        #cmd = [
-         # "ffmpeg",
-       #   "-ss", start_time,
-        #  "-t", duration_per_part,
-        #  "-i", file_path, output_file]
-        #cmd = ["ffmpeg",
-               #"-i", file_path,
-               #"-ss", start_time,
-               #"-t", duration_per_part,
-               #"-c", "copy", output_file ]
         cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
         subprocess.check_output(cmd, shell=True)
         
     return output_folder,d
-
-PROGRESS_BAR = """<b>\n
-╭━━━━❰ᴘʀᴏɢʀᴇss ʙᴀʀ❱━➣
-┣⪼ 🗃️ Sɪᴢᴇ: {1} | {2}
-┣⪼ ⏳️ Dᴏɴᴇ : {0}%
-┣⪼ 🚀 Sᴩᴇᴇᴅ: {3}/s
-┣⪼ ⏰️ Eᴛᴀ: {4}
-╰━━━━━━━━━━━━━━━➣ </b>"""
 
 def TimeFormatter(milliseconds: int) -> str:
     seconds, milliseconds = divmod(int(milliseconds), 1000)
@@ -179,7 +161,7 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
             ''.join(["⬢" for i in range(math.floor(percentage / 5))]),
             ''.join(["⬡" for i in range(20 - math.floor(percentage / 5))])
         )            
-        tmp = progress + PROGRESS_BAR.format( 
+        tmp = progress + Config.PROGRESS_BAR.format( 
             round(percentage, 2),
             humanbytes(current),
             humanbytes(total),

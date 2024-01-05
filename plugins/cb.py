@@ -3,7 +3,7 @@
 import os, shutil
 from config import Config
 from pyrogram import Client, types
-from plugins.settings.settings import OpenSettings
+from plugins.settings.setting import OpenSettings
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.database.database import db
 import logging
@@ -36,7 +36,7 @@ async def button(bot, update):
 
     elif update.data == "OpenSettings":
         await update.answer()
-        await OpenSettings(update.message)
+        await OpenSettings(update.from_user.id)
     elif update.data == "showThumbnail":
         thumbnail = await db.get_thumbnail(update.from_user.id)
         if not thumbnail:

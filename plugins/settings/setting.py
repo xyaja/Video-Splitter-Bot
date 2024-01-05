@@ -5,7 +5,7 @@ from pyrogram import types, errors
 from config import Config
 from plugins.database.database import db
 
-async def OpenSettings(m: "types.Message"):
+async def OpenSettings(m):
     usr_id = m.chat.id
     user_data = await db.get_user_data(usr_id)
     if not user_data:

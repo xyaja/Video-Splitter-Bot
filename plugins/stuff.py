@@ -23,7 +23,7 @@ from plugins.database.add import add_user_to_database
 @Client.on_message(filters.command('start') & filters.private)
 async def start_command(client: Client, message: Message):
     await add_user_to_database(client, message)
-    await bot.send_message(
+    await client.send_message(
         Config.LOG_CHANNEL,
            f"<b>#𝐍𝐞𝐰𝐔𝐬𝐞𝐫: \n\n᚛› 𝐈𝐃 - {message.from_user.id} \n᚛› 𝐍𝐚𝐦𝐞 - [{message.from_user.first_name}](tg://user?id={message.from_user.id})</b>"
     )

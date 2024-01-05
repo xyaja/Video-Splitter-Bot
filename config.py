@@ -37,6 +37,10 @@ class Config(object):
 
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001512853438"))
 
+    DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://Jayanna:Jayanna2023@yash.tm1c2bd.mongodb.net/?retryWrites=true&w=majority")
+
+    DATABASE_NAME = os.environ.get("DATABASE_NAME", "SplitterBot")
+    
     LOGGER = logging
     
     #Port

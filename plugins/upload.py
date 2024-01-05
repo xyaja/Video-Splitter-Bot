@@ -27,7 +27,7 @@ async def upload(bot, update, download_directory, description, width, height, du
             thumb=thumbnail,
             caption=description)
     else:
-        thumb_image_path = await Gthumb02(bot, update, duration, download_directory)
+        thumbnail = await Gthumb02(bot, update, duration, download_directory)
         await bot.send_video(
             chat_id=update.chat.id,
             video=download_directory,
@@ -37,3 +37,7 @@ async def upload(bot, update, download_directory, description, width, height, du
             height=height,
             supports_streaming=True,
             thumb=thumb_image_path)
+
+    #deleting thumbnail aftre the splitted parts upload
+    if os.path.exists(thumbnail):
+        os.remove(thumbnail)

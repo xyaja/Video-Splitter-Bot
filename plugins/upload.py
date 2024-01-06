@@ -36,7 +36,7 @@ async def upload(bot, update, download_directory, description, width, height, du
             width=width,
             height=height,
             supports_streaming=True,
-            thumb=thumb_image_path)
+            thumb=thumbnail)
 
     #deleting thumbnail aftre the splitted parts upload
     if os.path.exists(thumbnail):

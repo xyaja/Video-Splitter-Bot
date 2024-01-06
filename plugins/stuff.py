@@ -48,19 +48,14 @@ async def add_auth(bot, update):
     cmd = update.command
     if len(cmd) == 1:
         await update.reply(text = "Invalid Syntax send the command properly.\nExample: <code>/addauth 1061576483</code>")
-        return None
     elif len(cmd) == 2:
         try:
             auth_id = int(cmd[1].strip())
             #Config.AUTH_USERS.append(auth_id)
-            await message.reply_text(text = f"<b>Do You Want To Add The Given [User](tg://user?id={auth_id}) To An Auth User.\nClick Below Button Confirm 👇</b>",
-              disable_web_page_preview=True, reply_markup=Config.AUTH_ADD_BUTTONS, quote=True)
-            await bot.send_message(chat_id = auth_id, text = "<b>Now Your An Authorised User🎉.\nEnjoy Our Service....!!</b>")
-            await update.reply(text = f"<b>New User Added🎉.\n User - [UserLink](tg://user?id={auth_id})</b>")
-            return auth_id
+            await update.reply_text(text = f"<b>Do You Want To Add The Given [User](tg://user?id={auth_id}) To An Auth User.\nClick Below Button Confirm 👇</b>",
+                                      disable_web_page_preview=True, reply_markup=Config.AUTH_ADD_BUTTONS, quote=True)
         except:
             await update.reply(text = "Invalid User ID, please chech again and resend.")
-        return None
   
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):
@@ -77,11 +72,11 @@ async def parts_handler(bot, update):
         return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
     elif len(cmd) == 2:
         file = getattr(replied, replied.media.value)
-        #try:
-        parts = int(cmd[1].strip())
-        await splitter(bot, update, parts, file, replied)
-        #except:
-           # await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
+        try:
+            parts = int(cmd[1].strip())
+            await splitter(bot, update, parts, file, replied)
+        except:
+            await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
 
 async def splitter(bot, update, parts, file, replied):
     filename = file.file_name

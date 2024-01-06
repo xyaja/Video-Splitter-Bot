@@ -22,7 +22,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from plugins.database.database import db
 from config import Config
 from plugins.database.add import add_user_to_database
-from plugins.settings.setting import OpenSettings
+from plugins.setting import OpenSettings
 
 
 @Client.on_message(filters.private & filters.photo)

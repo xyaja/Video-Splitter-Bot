@@ -52,7 +52,7 @@ async def add_auth(bot, update):
             auth_id = int(cmd[1].strip())
             #Config.AUTH_USERS.append(auth_id)
             await message.reply_text(text = f"<b>Do You Want To Add The Given [User](tg://user?id={auth_id}) To An Auth User.\nClick Below Button Confirm 👇</b>",
-              disable_web_page_preview=True, reply_markup=Config.AUTH_AAD_BUTTONS, quote=True)
+              disable_web_page_preview=True, reply_markup=Config.AUTH_ADD_BUTTONS, quote=True)
             await bot.send_message(chat_id = auth_id, text = "<b>Now Your An Authorised User🎉.\nEnjoy Our Service....!!</b>")
             await update.reply(text = f"<b>New User Added🎉.\n User - [UserLink](tg://user?id={auth_id})</b>")
             return auth_id

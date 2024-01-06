@@ -74,11 +74,21 @@ async def button(bot, update):
         addauth = await db.get_auth_user(update.from_user.id)
         if addauth:
             await update.message.edit_text(
-            text= f"The Given [User](tg://user?id={auth_id}) Is Already an Auth User...!!",
-            reply_markup=Config.AUTH_B,
+            text= f"<b>The Given [User](tg://user?id={auth_id}) Is Already an Auth User...!!\nClick Confirm To Remove From An Auth Users List.👇</b>",
+            reply_markup=Config.AUTH_DELETE_BUTTONS,
             disable_web_page_preview=True)
         else:
             await db.set_auth_user(auth_id, True)
+
+    elif update.data == "addauthuser":
+        await auth_id = auth_user_id(bot, update)
+        await update.answer()
+        await db.set_auth_user(auth_id, False)
+        await update.message.edit_text(
+            text= f"<b>The Given [User](tg://user?id={auth_id}) Is Removed From an Auth User...!!</b>",
+            reply_markup=Config.AUTH_DELETE_BUTTONS,
+            disable_web_page_preview=True)
+        await bot.send_message(chat_id = auth_id, text = "<b>ɴᴏᴡ ʏᴏᴜʀ ʀᴇᴍᴏᴠᴇᴅ ꜰʀᴏᴍ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ.\nʏᴏᴜ ɴᴇᴇᴅ ʙᴜʏ ᴀ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ ꜰʀᴏᴍ [Kannadiga 💛❤️](https://t.me/legend580) ᴛᴏ ʙᴇᴄᴏᴍᴇ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ.</b>")
           
     else:
         pass

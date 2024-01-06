@@ -15,7 +15,7 @@ class Database:
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
-            apply_caption=True,
+            auth_user=False,
             upload_as_doc=False,
             thumbnail=None,
             caption=None
@@ -39,12 +39,12 @@ class Database:
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
 
-    # async def set_apply_caption(self, id, apply_caption):
-    #     await self.col.update_one({'id': id}, {'$set': {'apply_caption': apply_caption}})
+    async def set_auth_user(self, id, add_user):
+        await self.col.update_one({'id': id}, {'$set': {'auth_user': add_user}})
 
-    # async def get_apply_caption(self, id):
-    #     user = await self.col.find_one({'id': int(id)})
-    #     return user.get('apply_caption', True)
+    async def get_auth_user(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('auth_user', True)
 
     async def set_upload_as_doc(self, id, upload_as_doc):
         await self.col.update_one({'id': id}, {'$set': {'upload_as_doc': upload_as_doc}})

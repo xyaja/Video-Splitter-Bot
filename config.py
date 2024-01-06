@@ -129,3 +129,15 @@ class Config(object):
         InlineKeyboardButton('🔒 Close', callback_data='close')
         ]]
     )
+    AUTH_ADD_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('👁️Confirm', callback_data='addauthuser'),
+        InlineKeyboardButton('🔒 Close', callback_data='close')
+        ]]
+    )
+    AUTH_DELETE_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('👁️Confirm', callback_data='deleteuthuser'),
+        InlineKeyboardButton('🔒 Close', callback_data='close')
+        ]]
+    )

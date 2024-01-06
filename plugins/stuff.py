@@ -19,6 +19,7 @@ import os
 import shutil
 from plugins.upload import upload
 from plugins.database.add import add_user_to_database
+from plugins.database.database import db
 
 @Client.on_message(filters.command('start') & filters.private)
 async def start_command(client: Client, message: Message):

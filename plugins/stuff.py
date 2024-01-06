@@ -51,7 +51,7 @@ async def add_auth(bot, update):
             auth_id = int(cmd[1].strip())
             Config.AUTH_USERS.append(auth_id)
             await bot.send_message(chat_id = auth_id, text = "<b>Now Your An Authorised User🎉.</b>")
-            await update.reply(text = f"<b>New User Added🎉.\n User ID - {auth_id}</b>")
+            await update.reply(text = f"<b>New User Added🎉.\n User - {auth_id}</b>")
         except:
             await update.reply(text = "Invalid User ID, please chech again and resend.")
   
@@ -99,7 +99,7 @@ async def splitter(bot, update, parts, file, replied):
         height = 360
         for i in range(parts):
             await ms.delete()
-            mg = await bot.send_message(chat_id = update.chat.id, text=f"<b>Uploading Part{i+1} video..!</b>")
+            mg = await bot.send_message(chat_id = update.chat.id, text=f"<b>Uploading Part{i+1}....!</b>")
             download_directory = loc + "/" + fn+"_Part"+str(i+1) + ".mp4"
             description = f'<b>{fn}_Part{i+1}.mp4</b>'
             await upload(bot, update, download_directory, description, width, height, d)

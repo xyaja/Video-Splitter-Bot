@@ -70,11 +70,11 @@ async def parts_handler(bot, update):
         return await update.reply(text = "You need to reply a /sp command along with split size to any video\n Example: <code>/sp 5</code>")
     elif len(cmd) == 2:
         file = getattr(replied, replied.media.value)
-        try:
-            parts = int(cmd[1].strip())
-            await splitter(bot, update, parts, file, replied)
-        except:
-            await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
+        #try:
+        parts = int(cmd[1].strip())
+        await splitter(bot, update, parts, file, replied)
+        #except:
+           # await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
 
 async def splitter(bot, update, parts, file, replied):
     filename = file.file_name
@@ -94,16 +94,15 @@ async def splitter(bot, update, parts, file, replied):
 
     if os.path.isfile(file_path):
         await ms.edit(text=f"Starting to split {parts} parts.....!!")
-        loc,d = await split_parts(file_path, parts, file_folder)
+        loc,d = await split_parts(file_path, parts, file_folder, fn)
         width = 640
         height = 360
         for i in range(parts):
             await ms.delete()
-            mg = await bot.send_message(chat_id = update.chat.id, text=f"Uploading Part{i+1} video..!")
-            download_directory = loc + "/part" + str(i+1) + ".mp4"
+            mg = await bot.send_message(chat_id = update.chat.id, text=f"<b>Uploading Part{i+1} video..!</b>")
+            download_directory = loc + "/" + fn+"_Part"+str(i+1) + ".mp4"
             description = f'<b>{fn}_Part{i+1}.mp4</b>'
             await upload(bot, update, download_directory, description, width, height, d)
-            #await bot.send_video(chat_id = update.chat.id, video = download_directory, supports_streaming = True, duration= d, width = width, height = height, caption = description)
             await mg.delete()
 
         #deleting folder aftre the splitted parts upload
@@ -114,7 +113,7 @@ def random_char(y):
     return ''.join(random.choice(string.ascii_letters) for x in range(y))
 
 # splitting given video into equal parts
-async def split_parts(file_path, parts, file_folder):
+async def split_parts(file_path, parts, file_folder, fn):
     video = VideoFileClip(file_path)
     video_length = video.duration
     duration_per_part = video_length / parts
@@ -122,10 +121,38 @@ async def split_parts(file_path, parts, file_folder):
     output_folder = os.makedirs(f'{file_folder}/Parts')
     output_folder = f'{file_folder}/Parts'
     for i in range(parts):
-        start_time = i * duration_per_part
-        output_file = os.path.join(output_folder, f"part{i+1}.mp4")
-        cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
-        subprocess.check_output(cmd, shell=True)
+        start_time = str(i * d)
+        dd=str(d)
+        output_file = os.path.join(output_folder, fn + "_Part" + str(i+1) + ".mp4")
+        
+        #One type of command execution - it will print on terminal
+        #cmd = f"ffmpeg -i {file_path} -ss {start_time} -t {duration_per_part} -c copy {output_file}"
+        #subprocess.check_output(cmd, shell=True)
+        
+        #Another type of command execution - it will not print on terminal
+        command = [
+        "ffmpeg",
+        "-i",
+        file_path,
+        "-ss",
+        start_time,
+        "-t",
+        dd,
+        "-c", "copy",
+        output_file 
+        ]
+        
+        process = await asyncio.create_subprocess_exec(
+            *command,
+            # stdout must a pipe to be accessible as process.stdout
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        # Wait for the subprocess to finish
+        stdout, stderr = await process.communicate()
+        e_response = stderr.decode().strip()
+        t_response = stdout.decode().strip()
+    
     return output_folder,d
 
 def TimeFormatter(milliseconds: int) -> str:
@@ -199,7 +226,7 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         try:
             await message.edit(
                 text=f"{ud_type}\n\n{tmp}",               
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✖️ 𝙲𝙰𝙽𝙲𝙴𝙻 ✖️", callback_data="close")]])                                               
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✖️ 𝙲𝙰𝙽𝙲𝙴𝙻 ✖️", callback_data="close")]])  
             )
         except:
             pass

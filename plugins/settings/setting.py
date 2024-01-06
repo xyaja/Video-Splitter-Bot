@@ -31,8 +31,7 @@ async def OpenSettings(m):
         await m.edit(
             text="**ʜᴇʀᴇ ʏᴏᴜ ᴄᴀɴ sᴇᴛᴜᴘ ʏᴏᴜʀ sᴇᴛᴛɪɴɢs**",
             reply_markup=types.InlineKeyboardMarkup(buttons_markup),
-            disable_web_page_preview=True,
-            parse_mode="Markdown"
+            disable_web_page_preview=True
         )
     except errors.MessageNotModified: pass
     except errors.FloodWait as e:

@@ -61,7 +61,7 @@ async def add_auth(bot, update):
 @Client.on_message(filters.command("sp") & filters.private)
 async def parts_handler(bot, update):
     user_id = update.from_user.id
-    if (await db.get_auth_user(user_id)) is False or not user_id in Config.AUTH_USERS:
+    if (await db.get_auth_user(user_id)) is False and not user_id in Config.AUTH_USERS:
         return await update.reply_text(
           text = Config.NOT_AUTH.format(update.from_user.mention),
           disable_web_page_preview=True, quote=True

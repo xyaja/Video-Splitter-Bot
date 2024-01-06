@@ -43,6 +43,8 @@ async def about_command(client: Client, message: Message):
 
 @Client.on_message(filters.command('addauth') & filters.private & filters.user(Config.OWNER_ID))
 async def add_auth(bot, update):
+    global auth_id
+    auth_id = 1
     cmd = update.command
     if len(cmd) == 1:
         await update.reply(text = "Invalid Syntax send the command properly.\nExample: <code>/addauth 1061576483</code>")
@@ -235,3 +237,9 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
             )
         except:
             pass
+
+
+
+def auth_user_id(bot, update):
+    user_id = auth_id
+    return user_id

@@ -3,7 +3,7 @@
 import os, shutil
 from config import Config
 from pyrogram import Client, types
-from plugins.setting import OpenSettings
+from plugins.settings.setting import OpenSettings
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.database.database import db
 import logging

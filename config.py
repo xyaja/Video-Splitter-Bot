@@ -137,7 +137,7 @@ class Config(object):
     )
     AUTH_DELETE_BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('👁️Confirm', callback_data='deleteuthuser'),
+        InlineKeyboardButton('👁️Confirm', callback_data='deleteauthuser'),
         InlineKeyboardButton('🔒 Close', callback_data='close')
         ]]
     )

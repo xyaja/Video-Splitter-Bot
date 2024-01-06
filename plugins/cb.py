@@ -80,7 +80,7 @@ async def button(bot, update):
         else:
             await db.set_auth_user(auth_id, True)
 
-    elif update.data == "addauthuser":
+    elif update.data == "deleteauthuser":
         await auth_id = auth_user_id(bot, update)
         await update.answer()
         await db.set_auth_user(auth_id, False)

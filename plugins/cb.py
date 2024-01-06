@@ -68,5 +68,17 @@ async def button(bot, update):
             await db.set_upload_as_doc(update.from_user.id, True)
         await OpenSettings(update.message)
       
+    elif update.data == "addauthuser":
+        await auth_id = auth_user_id(bot, update)
+        await update.answer()
+        addauth = await db.get_auth_user(update.from_user.id)
+        if addauth:
+            await update.message.edit_text(
+            text= f"The Given [User](tg://user?id={auth_id}) Is Already an Auth User...!!",
+            reply_markup=Config.AUTH_B,
+            disable_web_page_preview=True)
+        else:
+            await db.set_auth_user(auth_id, True)
+          
     else:
         pass

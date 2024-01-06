@@ -7,6 +7,7 @@ from plugins.settings.setting import OpenSettings
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.database.database import db
 import logging
+from plugins.stuff import auth_user_id
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -69,7 +70,7 @@ async def button(bot, update):
         await OpenSettings(update.message)
       
     elif update.data == "addauthuser":
-        await auth_id = auth_user_id(bot, update)
+        auth_id = auth_user_id(bot, update)
         await update.answer()
         addauth = await db.get_auth_user(update.from_user.id)
         if addauth:
@@ -79,15 +80,15 @@ async def button(bot, update):
             disable_web_page_preview=True)
         else:
             await db.set_auth_user(auth_id, True)
+            await update.message.edit_text(text = f"<b>New User Added🎉.\nUser - [UserLink](tg://user?id={auth_id})</b>")
+            await bot.send_message(chat_id = auth_id, text = "<b>Now Your An Authorised User🎉.\nEnjoy Our Service....!!</b>")
 
     elif update.data == "deleteauthuser":
-        await auth_id = auth_user_id(bot, update)
+        auth_id = auth_user_id(bot, update)
         await update.answer()
-        await db.set_auth_user(auth_id, False)
         await update.message.edit_text(
-            text= f"<b>The Given [User](tg://user?id={auth_id}) Is Removed From an Auth User...!!</b>",
-            reply_markup=Config.AUTH_DELETE_BUTTONS,
-            disable_web_page_preview=True)
+            text= f"<b>The Given [User](tg://user?id={auth_id}) Is Removed From an Auth User...!!</b>", disable_web_page_preview=True)
+        await db.set_auth_user(auth_id, False)
         await bot.send_message(chat_id = auth_id, text = "<b>ɴᴏᴡ ʏᴏᴜʀ ʀᴇᴍᴏᴠᴇᴅ ꜰʀᴏᴍ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ.\nʏᴏᴜ ɴᴇᴇᴅ ʙᴜʏ ᴀ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ ꜰʀᴏᴍ [Kannadiga 💛❤️](https://t.me/legend580) ᴛᴏ ʙᴇᴄᴏᴍᴇ ᴀɴ ᴀᴜᴛʜᴏʀɪꜱᴇᴅ ᴜꜱᴇʀ.</b>")
           
     else:

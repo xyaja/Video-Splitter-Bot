@@ -54,7 +54,7 @@ async def add_auth(bot, update):
             auth_id = int(cmd[1].strip())
             #Config.AUTH_USERS.append(auth_id)
             update.reply_text(text =f"<b>Do You Want To Add The Given [User](tg://user?id={auth_id}) To An Auth User.\nClick Below Button Confirm 👇</b>",
-                                      disable_web_page_preview=True, reply_markup=Config.AUTH_ADD_BUTTONS, quote=True)
+                                      disable_web_page_preview=True, reply_markup=Config.AUTH_ADD_BUTTONS)
         except:
             await update.reply(text = "Invalid User ID, please chech again and resend.")
   

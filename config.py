@@ -60,6 +60,8 @@ class Config(object):
     ┣⪼ ⏰️ Eᴛᴀ: {4}
     ╰━━━━━━━━━━━━━━━➣ </b>"""
 
+    WAIT_MSG = """"<b>Processing ...</b>"""
+    
     TEXT = "sᴇɴᴅ ᴍᴇ ᴀɴʏ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ᴛᴏ sᴇᴛ."
 
     HELP_TEXT = """

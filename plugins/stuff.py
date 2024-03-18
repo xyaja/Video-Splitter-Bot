@@ -32,6 +32,12 @@ async def start_command(client: Client, message: Message):
         disable_web_page_preview=True, 
         reply_markup=Config.START_BUTTONS, quote=True)
 
+@Client.on_message(filters.command('users') & filters.private & filters.user(Config.ADMINS))
+async def get_users(client: Bot, message: Message):
+    msg = await client.send_message(chat_id=message.chat.id, text=Config.WAIT_MSG)
+    users = await full_userbase()
+    await msg.edit(f"{len(users)} users are using this bot")
+  
 @Client.on_message(filters.command('help') & filters.private)
 async def help_command(client: Client, message: Message):
     await message.reply_text(text = Config.HELP_TEXT,

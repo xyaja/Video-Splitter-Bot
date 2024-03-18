@@ -32,7 +32,7 @@ async def start_command(client: Client, message: Message):
         disable_web_page_preview=True, 
         reply_markup=Config.START_BUTTONS, quote=True)
 
-@Client.on_message(filters.command('users') & filters.private & filters.user(Config.ADMINS))
+@Client.on_message(filters.command('users') & filters.private & filters.user(Config.OWNER_ID))
 async def get_users(client: Bot, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=Config.WAIT_MSG)
     users = await db.total_users_count()

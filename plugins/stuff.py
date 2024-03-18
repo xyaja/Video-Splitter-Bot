@@ -33,7 +33,7 @@ async def start_command(client: Client, message: Message):
         reply_markup=Config.START_BUTTONS, quote=True)
 
 @Client.on_message(filters.command('users') & filters.private & filters.user(Config.OWNER_ID))
-async def get_users(client: Bot, message: Message):
+async def get_users(client: Client, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=Config.WAIT_MSG)
     users = await db.total_users_count()
     await msg.edit(f"{len(users)} users are using this bot")

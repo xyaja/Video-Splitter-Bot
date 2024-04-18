@@ -1,8 +1,7 @@
 
 <h1 align="center"><a href="https://t.me/media_splitter_bot">Video Splitter Bot 🚀</a></h1>
 
-
-<img src="https://github.com/JayaG-gowda/Video-Splitter-Bot/assets/119968609/81a81d0e-cc07-4c60-828b-3f4ca01cfd7b" padding-left="100px">
+<img src="https://github.com/JayaG-gowda/Video-Splitter-Bot/assets/119968609/db2fd2a4-afea-4c9a-8efd-de1e4e83688f" padding-left="100px">
 
 <h3 align="center"> 🤍 Thanks for Being Here 🤍</h3>
 

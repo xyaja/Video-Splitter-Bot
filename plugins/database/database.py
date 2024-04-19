@@ -17,8 +17,7 @@ class Database:
             join_date=datetime.date.today().isoformat(),
             auth_user=False,
             upload_as_doc=False,
-            thumbnail=None,
-            caption=None
+            thumbnail=None
         )
 
     async def add_user(self, id):
@@ -35,6 +34,13 @@ class Database:
 
     async def get_all_users(self):
         return self.col.find({})
+        
+    async def full_userbase(self):
+        user_docs = self.col.find()
+        user_ids = []
+        for doc in user_docs:
+            user_ids.append(doc['id'])
+        return user_ids
 
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
@@ -59,13 +65,6 @@ class Database:
     async def get_thumbnail(self, id):
         user = await self.col.find_one({'id': int(id)})
         return user.get('thumbnail', None)
-
-    async def set_caption(self, id, caption):
-        await self.col.update_one({'id': id}, {'$set': {'caption': caption}})
-
-    async def get_caption(self, id):
-        user = await self.col.find_one({'id': int(id)})
-        return user.get('caption', None)
 
     async def get_user_data(self, id) -> dict:
         user = await self.col.find_one({'id': int(id)})

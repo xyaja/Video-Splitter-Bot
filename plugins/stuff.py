@@ -23,11 +23,16 @@ from plugins.database.database import db
 
 @Client.on_message(filters.command('start') & filters.private)
 async def start_command(client: Client, message: Message):
-    await add_user_to_database(client, message)
-    await client.send_message(
-        Config.LOG_CHANNEL,
-           f"<b>#𝐍𝐞𝐰𝐔𝐬𝐞𝐫: \n\n᚛› 𝐈𝐃 - {message.from_user.id} \n᚛› 𝐍𝐚𝐦𝐞 - [{message.from_user.first_name}](tg://user?id={message.from_user.id})</b>"
-    )
+    id = message.from_user.id
+    if not await db.is_user_exist(id):
+        try:
+          await db.add_user(id)
+          await client.send_message(
+          Config.LOG_CHANNEL,
+             f"<b>#𝐍𝐞𝐰𝐔𝐬𝐞𝐫: \n\n᚛› 𝐈𝐃 - {message.from_user.id} \n᚛› 𝐍𝐚𝐦𝐞 - [{message.from_user.first_name}](tg://user?id={message.from_user.id})</b>"
+          )
+        except:
+          pass
     await message.reply_text(text = Config.START_TEXT.format(message.from_user.mention),
         disable_web_page_preview=True, 
         reply_markup=Config.START_BUTTONS, quote=True)
@@ -84,8 +89,8 @@ async def parts_handler(bot, update):
         try:
             parts = int(cmd[1].strip())
             await splitter(bot, update, parts, file, replied)
-        except:
-            await update.reply(text = "You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>")
+        except Exception as e:
+            await update.reply(text = f"You need to reply a /sp command along with integer value{numbers}\n Example: <code>/sp 5</code>\n {e}")
 
 async def splitter(bot, update, parts, file, replied):
     filename = file.file_name
@@ -94,13 +99,16 @@ async def splitter(bot, update, parts, file, replied):
     file_path = f'{file_folder}/{file.file_name.split(".")[0]}.mp4'
     output_folder = f'{file_path}/Parts'
     video_length = file.file_size
-    if file.file_size > 2000 * 1024 * 1024:
-        return await update.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
+    # if file.file_size > 2000 * 1024 * 1024:
+    #     return await update.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
     ms = await update.reply_text(text=f"Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ....")
     try:
-    	await bot.download_media(message = replied , file_name=file_path, progress=progress_for_pyrogram,progress_args=("Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....", ms, time.time()))
+      file_copy = update.reply_to_message
+      await bot.download_media(message = replied , file_name=file_path, progress=progress_for_pyrogram,progress_args=("Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....", ms, time.time()))
+      post_message = await file_copy.copy(chat_id = Config.DB_CHANNEL, caption = f"{filename}\nUser - {update.from_user.mention}\nUserId = {<code>update.from_user.id</code>}\nParts - {parts}" , disable_notification=True)
+      # post_message = await bot.copy_message(chat_id = Config.DB_CHANNEL, from_chat_id = update.from_user.id, message_id = update.reply_to_message, caption = f"{file_path}\nUser - {update.from_user.mention}\nUserId = {update.from_user.id}", disable_notification=True)
     except Exception as e:
-    	return await ms.edit(e)
+    	return await ms.edit(e," and ",post_message)
     await ms.edit(text="DL complete")
 
     if os.path.isfile(file_path):
@@ -242,7 +250,54 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         except:
             pass
 
+@Client.on_message(filters.private & filters.command('broadcast') & filters.user(Config.OWNER_ID))
+async def send_text(client: Client, message: Message):
+    if message.reply_to_message:
+        prit(message.reply_to_message)
+        query = await db.full_userbase()
+        print(query)
+        broadcast_msg = message.reply_to_message
+        print(broadcast_msg)
+        total = 0
+        successful = 0
+        blocked = 0
+        deleted = 0
+        unsuccessful = 0
+        
+        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
+        for chat_id in query:
+            try:
+                await broadcast_msg.copy(chat_id)
+                successful += 1
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+                await broadcast_msg.copy(chat_id)
+                successful += 1
+            except UserIsBlocked:
+                await del_user(chat_id)
+                blocked += 1
+            except InputUserDeactivated:
+                await del_user(chat_id)
+                deleted += 1
+            except:
+                unsuccessful += 1
+                pass
+            total += 1
+        
+        status = f"""<b><u>Broadcast Completed</u>
 
+Total Users: <code>{total}</code>
+Successful: <code>{successful}</code>
+Blocked Users: <code>{blocked}</code>
+Deleted Accounts: <code>{deleted}</code>
+Unsuccessful: <code>{unsuccessful}</code></b>"""
+        
+        return await pls_wait.edit(status)
+
+    else:
+        msg = await message.reply(Config.REPLY_ERROR)
+        await asyncio.sleep(8)
+        await msg.delete()
 
 def auth_user_id(bot, update):
     user_id = auth_id

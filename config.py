@@ -13,8 +13,7 @@ logging.basicConfig(
 
 class Config(object):
 
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
-    
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
     
     API_ID = int(os.environ.get("API_ID", ""))
 
@@ -35,10 +34,12 @@ class Config(object):
     UPDATES_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
 
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
+    
+    DB_CHANNEL = int(os.environ.get("DB_CHANNEL", ""))
 
     DATABASE_URL = os.environ.get("DATABASE_URL", "")
 
-    DATABASE_NAME = os.environ.get("DATABASE_NAME", "")
+    DATABASE_NAME = os.environ.get("DATABASE_NAME", "JN_Splitter_Bot")
     
     LOGGER = logging
     
@@ -62,6 +63,8 @@ class Config(object):
     WAIT_MSG = """"<b>Processing ...</b>"""
     
     TEXT = "sᴇɴᴅ ᴍᴇ ᴀɴʏ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ᴛᴏ sᴇᴛ."
+
+    REPLY_ERROR = """<code>Use this command as a replay to any telegram message with out any spaces.</code>"""
 
     HELP_TEXT = """
     <b>𒊹︎︎︎ How To Split File Or Video</b>

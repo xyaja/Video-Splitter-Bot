@@ -43,14 +43,24 @@ async def get_users(client: Client, message: Message):
     users = await db.total_users_count()
     await msg.edit(f"{users} users are using this bot")
 
-@Client.on_message(filters.command('users_name') & filters.private & filters.user(Config.OWNER_ID))
-async def get_users(client: Client, message: Message):
-    msg = await client.send_message(chat_id=message.chat.id, text=Config.WAIT_MSG)
+@Client.on_message(filters.command('users_name') & filters.user(Config.OWNER_ID))
+async def list_users(bot, message):
+    raju = await message.reply('Getting List Of Users')
     users = await db.get_all_users()
-    m = await msg.edit(f"Users are:\n")
-    for user in users:
-        m.append(user,'\n')
-
+    out = "Users Saved In DB Are:\n\n"
+    async for user in users:
+        out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>"
+        # if user['ban_status']['is_banned']:
+        #     out += '( Banned User )'
+        out += '\n'
+    try:
+        await raju.edit_text(out)
+    except MessageTooLong:
+        pass
+        # with open('users.txt', 'w+') as outfile:
+        #     outfile.write(out)
+        # await message.reply_document('users.txt', caption="List Of Users")
+      
 @Client.on_message(filters.command('help') & filters.private)
 async def help_command(client: Client, message: Message):
     await message.reply_text(text = Config.HELP_TEXT,

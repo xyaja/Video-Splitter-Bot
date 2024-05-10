@@ -39,7 +39,7 @@ python3 bot.py
 ```
 
 ### Config Vars:
-
+#Required
 1. `API_ID` : Get it from https://my.telegram.org/apps 
 2. `API_HASH` : Get it from https://my.telegram.org/apps
 3. `BOT_TOKEN` : Get it from [@Botfather](https://t.me/botfather)
@@ -48,6 +48,7 @@ python3 bot.py
 6. `AUTH_USERS` : List of auth users separated by space
 7. `BANNED_USERS` : List of banned users separated by space
 8. `LOG_CHANNEL` : Your Any Own Private Channel ID Where Your Bot As Admin With Full Permission
+8. `DB_CHANNEL` : Your Any Own Private Channel ID Where Your Bot As Admin With Full Permission
 
 
 ### Commands
@@ -60,6 +61,9 @@ help - How to use me 🤔
 delthumb - Delete Your Thumbnail 🏞
 showthumb - Showing Your Thumbnail 🏞
 addauth - [Admin] add new auth user 🎉
+broadcast - [Admin] broadcast message 🎉
+users - [Admin] Number of users 🎉
+users_name - [Admin] List of users name 🎉
 ```
 
 

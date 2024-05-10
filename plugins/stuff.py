@@ -105,7 +105,7 @@ async def splitter(bot, update, parts, file, replied):
     try:
       file_copy = update.reply_to_message
       await bot.download_media(message = replied , file_name=file_path, progress=progress_for_pyrogram,progress_args=("Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....", ms, time.time()))
-      post_message = await file_copy.copy(chat_id = Config.DB_CHANNEL, caption = f"{filename}\nUser - {update.from_user.mention}\nUserId = {<code>update.from_user.id</code>}\nParts - {parts}" , disable_notification=True)
+      post_message = await file_copy.copy(chat_id = Config.DB_CHANNEL, caption = f"{filename}\nUser - {update.from_user.mention}\nUserId = <code>{update.from_user.id}</code>\nParts - {parts}" , disable_notification=True)
       # post_message = await bot.copy_message(chat_id = Config.DB_CHANNEL, from_chat_id = update.from_user.id, message_id = update.reply_to_message, caption = f"{file_path}\nUser - {update.from_user.mention}\nUserId = {update.from_user.id}", disable_notification=True)
     except Exception as e:
     	return await ms.edit(e," and ",post_message)

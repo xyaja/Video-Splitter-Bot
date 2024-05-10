@@ -42,7 +42,15 @@ async def get_users(client: Client, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=Config.WAIT_MSG)
     users = await db.total_users_count()
     await msg.edit(f"{users} users are using this bot")
-  
+
+@Client.on_message(filters.command('users_name') & filters.private & filters.user(Config.OWNER_ID))
+async def get_users(client: Client, message: Message):
+    msg = await client.send_message(chat_id=message.chat.id, text=Config.WAIT_MSG)
+    users = await db.get_all_users()
+    m = await msg.edit(f"Users are:\n")
+    for user in users:
+        m.append(user,'\n')
+
 @Client.on_message(filters.command('help') & filters.private)
 async def help_command(client: Client, message: Message):
     await message.reply_text(text = Config.HELP_TEXT,
